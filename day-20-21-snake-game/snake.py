@@ -17,8 +17,7 @@ class Snake:
 
     def __init__(self):
         self.snake_segments = []
-        for x in [0, -20, -40]:
-            self.add_segment((x, 0))
+        self.create_snake()
         self.head = self.snake_segments[0]
 
     def move(self):
@@ -58,3 +57,15 @@ class Snake:
     def extend(self):
         tail_position = self.snake_segments[-1].position()
         self.add_segment(tail_position)
+
+    def reset(self):
+        for segment in self.snake_segments:
+            segment.goto(1000, 1000)
+        self.snake_segments.clear()
+        self.create_snake()
+        self.head = self.snake_segments[0]
+
+    def create_snake(self):
+        for x in [0, -20, -40]:
+            self.add_segment((x, 0))
+

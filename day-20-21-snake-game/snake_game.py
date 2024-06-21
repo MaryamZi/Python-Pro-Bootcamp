@@ -37,12 +37,16 @@ while True:
     x = head.xcor()
     y = head.ycor()
     if x > 280 or x < -280 or y > 280 or y < -280:
-        score_board.game_over()
-        break
+        score_board.reset()
+        snake.reset()
+        head = snake.snake_segments[0]
+        continue
 
     for segment in snake.snake_segments[1:]:
         if head.distance(segment) < 5:
-            score_board.game_over()
-            break
+            score_board.reset()
+            snake.reset()
+            head = snake.snake_segments[0]
+            continue
 
 screen.exitonclick()
